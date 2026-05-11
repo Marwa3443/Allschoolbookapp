@@ -11,6 +11,14 @@ import { HTTP_STATUS, ERROR_MESSAGES } from './config/constants.js';
 
 // Import Routes
 import authRoutes from './routes/auth.js';
+import userRoutes from './routes/user.js';
+import quranRoutes from './routes/quran.js';
+import audioRoutes from './routes/audio.js';
+import progressRoutes from './routes/progress.js';
+import achievementRoutes from './routes/achievement.js';
+import communityRoutes from './routes/community.js';
+import recordingRoutes from './routes/recording.js';
+import statisticsRoutes from './routes/statistics.js';
 
 // Load environment variables
 dotenv.config({ path: `.env.${process.env.NODE_ENV || 'development'}` });
@@ -49,10 +57,14 @@ app.get('/api/health', (req, res) => {
 
 // API Routes
 app.use('/api/auth', authRoutes);
-// app.use('/api/users', userRoutes);
-// app.use('/api/quran', quranRoutes);
-// app.use('/api/audio', audioRoutes);
-// etc.
+app.use('/api/users', userRoutes);
+app.use('/api/quran', quranRoutes);
+app.use('/api/audio', audioRoutes);
+app.use('/api/progress', progressRoutes);
+app.use('/api/recordings', recordingRoutes);
+app.use('/api/achievements', achievementRoutes);
+app.use('/api/community', communityRoutes);
+app.use('/api/statistics', statisticsRoutes);
 
 // 404 Handler
 app.use((req, res) => {
