@@ -2,10 +2,9 @@
 
 import { Tajawal, Cairo } from 'next/font/google';
 import './globals.css';
-import Header from './components/Header';
-import Footer from './components/Footer';
 import { Provider } from 'react-redux';
 import { store } from './lib/store';
+import { AuthProvider } from './context/AuthContext';
 
 const tajawal = Tajawal({ subsets: ['arabic'], variable: '--font-tajawal' });
 const cairo = Cairo({ subsets: ['arabic'], variable: '--font-cairo' });
@@ -25,11 +24,11 @@ export default function RootLayout({ children }) {
         <meta name="theme-color" content="#2d5f3f" />
       </head>
       <body className="font-arabic bg-islamic-light text-islamic-dark">
-        <Header />
-        <main className="min-h-screen">
-          {children}
-        </main>
-        <Footer />
+        <Provider store={store}>
+          <AuthProvider>
+            {children}
+          </AuthProvider>
+        </Provider>
       </body>
     </html>
   );
