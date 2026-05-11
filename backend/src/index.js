@@ -9,6 +9,9 @@ import logger from './utils/logger.js';
 import { sendError } from './utils/responseHandler.js';
 import { HTTP_STATUS, ERROR_MESSAGES } from './config/constants.js';
 
+// Import Routes
+import authRoutes from './routes/auth.js';
+
 // Load environment variables
 dotenv.config({ path: `.env.${process.env.NODE_ENV || 'development'}` });
 
@@ -44,10 +47,11 @@ app.get('/api/health', (req, res) => {
   });
 });
 
-// API Routes will be added here
-// app.use('/api/auth', authRoutes);
+// API Routes
+app.use('/api/auth', authRoutes);
 // app.use('/api/users', userRoutes);
 // app.use('/api/quran', quranRoutes);
+// app.use('/api/audio', audioRoutes);
 // etc.
 
 // 404 Handler
